@@ -2,6 +2,7 @@
 @rendermode InteractiveServer
 @using GestorCuentas.UI.Models
 @inject ILoginService LoginService
+@inject NavigationManager NavigationManager
 
 <PageTitle>Iniciar sesión</PageTitle>
 
@@ -79,6 +80,7 @@
     {
         _isSubmitting = true;
         _statusMessage = null;
+        _loginExitoso = false;
 
         try
         {
@@ -95,6 +97,11 @@
         finally
         {
             _isSubmitting = false;
+        }
+
+        if (_loginExitoso)
+        {
+            NavigationManager.NavigateTo("/dashboard");
         }
     }
 }
