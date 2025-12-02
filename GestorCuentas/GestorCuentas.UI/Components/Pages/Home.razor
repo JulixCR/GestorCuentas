@@ -1,7 +1,69 @@
 ﻿@page "/"
 
-<PageTitle>Home</PageTitle>
+<PageTitle>Iniciar sesión</PageTitle>
 
-<h1>Hello, world!</h1>
-
-Welcome to your new app.
+<div class="container-fluid login-page d-flex align-items-center justify-content-center min-vh-100">
+    <div class="row w-100 justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8 col-xl-6">
+            <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+                <div class="row g-0">
+                    <div class="col-md-5 d-none d-md-block gradient-panel text-white p-4 d-flex flex-column justify-content-between">
+                        <div>
+                            <h2 class="fw-bold">Gestor de Cuentas</h2>
+                            <p class="mb-4">Administra tus finanzas de forma organizada y segura.</p>
+                        </div>
+                        <div>
+                            <ul class="list-unstyled small mb-0">
+                                <li class="mb-2"><i class="bi bi-check-circle me-2"></i>Seguimiento de ingresos y gastos</li>
+                                <li class="mb-2"><i class="bi bi-check-circle me-2"></i>Reportes claros y personalizados</li>
+                                <li><i class="bi bi-check-circle me-2"></i>Respaldo seguro de tu información</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-7 bg-white">
+                        <div class="p-4 p-lg-5">
+                            <div class="text-center mb-4">
+                                <div class="avatar-circle mx-auto mb-3">
+                                    <i class="bi bi-shield-lock"></i>
+                                </div>
+                                <h3 class="fw-semibold mb-1">Bienvenido de nuevo</h3>
+                                <p class="text-muted mb-0">Inicia sesión para continuar</p>
+                            </div>
+                            <form class="needs-validation" novalidate>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Correo electrónico</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                                        <input type="email" class="form-control" id="email" placeholder="nombre@ejemplo.com" required>
+                                        <div class="invalid-feedback">Ingresa un correo válido.</div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <label for="password" class="form-label mb-0">Contraseña</label>
+                                        <a href="#" class="small text-primary text-decoration-none">¿Olvidaste tu contraseña?</a>
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                                        <input type="password" class="form-control" id="password" placeholder="••••••••" required>
+                                        <div class="invalid-feedback">Ingresa tu contraseña.</div>
+                                    </div>
+                                </div>
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input darker-border-checkbox" type="checkbox" value="" id="remember">
+                                    <label class="form-check-label" for="remember">
+                                        Recuérdame en este dispositivo
+                                    </label>
+                                </div>
+                                <div class="d-grid gap-3">
+                                    <button type="submit" class="btn btn-primary btn-lg shadow-sm">Iniciar sesión</button>
+                                    <button type="button" class="btn btn-outline-secondary">Crear cuenta</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
