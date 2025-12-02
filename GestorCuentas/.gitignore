@@ -1,0 +1,57 @@
+# Build results
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Tt]est[Rr]esults/
+[Bb]uild/
+[Rr]eleases/
+[Aa]rtifacts/
+[Dd]ebug/
+[Rr]elease/
+/out/
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Rider/VS Code
+.idea/
+*.sw?
+*~
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+**/packages/*
+!**/packages/build/
+project.lock.json
+project.assets.json
+
+# ASP.NET/Entity Framework
+App_Data/
+migrations/
+
+# SQL Server
+*.mdf
+*.ldf
+*.ndf
+
+# Others
+.DS_Store
+Thumbs.db
+npm-debug.log
+node_modules/
+
+# Publish profiles
+*.pubxml
+*.publishsettings
+
+# Coverage
+coverage/
+*.coverage
+*.coveragexml
+

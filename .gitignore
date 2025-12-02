@@ -1,0 +1,6 @@
+﻿################################################################################
+# Este archivo .gitignore ha sido creado automáticamente por Microsoft(R) Visual Studio.
+################################################################################
+
+*.dbmdl
+/GestorCuentas/GestorCuentas.Database/GestorCuentas.Database.jfm

@@ -1,4 +1,6 @@
-﻿@page "/"
+@page "/"
+@using GestorCuentas.UI.Models
+@inject ILoginService LoginService
 
 <PageTitle>Iniciar sesión</PageTitle>
 
@@ -6,7 +8,7 @@
     <div class="row w-100 justify-content-center">
         <div class="col-5 col-md-5 col-lg-6 col-xl-4">
             <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
-                <div class="row g-0">                    
+                <div class="row g-0">
                     <div class="col-md-12 bg-white">
                         <div class="p-4 p-lg-5">
                             <div class="text-center mb-4">
@@ -16,30 +18,44 @@
                                 <h3 class="fw-semibold mb-1">Bienvenido de nuevo</h3>
                                 <p class="text-muted mb-0">Inicia sesión para continuar</p>
                             </div>
-                            <form class="needs-validation" novalidate>
+
+                            <EditForm Model="_model" OnValidSubmit="OnSubmitAsync" class="needs-validation" novalidate>
+                                <DataAnnotationsValidator />
+                                <ValidationSummary />
+
                                 <div class="mb-3">
-                                    <label for="email" class="form-label">Correo electrónico</label>
+                                    <label for="idUsuario" class="form-label">IdUsuario</label>
                                     <div class="input-group">
-                                        <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                                        <input type="email" class="form-control" id="email" placeholder="nombre@ejemplo.com" required>
-                                        <div class="invalid-feedback">Ingresa un correo válido.</div>
+                                        <span class="input-group-text"><i class="bi bi-person-badge"></i></span>
+                                        <InputText id="idUsuario" class="form-control" @bind-Value="_model.IdUsuario" autocomplete="username" />
                                     </div>
+                                    <ValidationMessage For="() => _model.IdUsuario" />
                                 </div>
+
                                 <div class="mb-3">
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <label for="password" class="form-label mb-0">Contraseña</label>
-                                        <a href="#" class="small text-primary text-decoration-none">¿Olvidaste tu contraseña?</a>
+                                        <label for="clave" class="form-label mb-0">Clave</label>
                                     </div>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                                        <input type="password" class="form-control" id="password" placeholder="••••••••" required>
-                                        <div class="invalid-feedback">Ingresa tu contraseña.</div>
+                                        <InputText id="clave" type="password" class="form-control" @bind-Value="_model.Clave" autocomplete="current-password" />
                                     </div>
+                                    <ValidationMessage For="() => _model.Clave" />
                                 </div>
+
                                 <div class="d-grid gap-3">
-                                    <button type="submit" class="btn btn-primary btn-lg shadow-sm">Iniciar sesión</button>
+                                    <button type="submit" class="btn btn-primary btn-lg shadow-sm" disabled="@_isSubmitting">
+                                        @_submitLabel
+                                    </button>
                                 </div>
-                            </form>
+                            </EditForm>
+
+                            @if (_statusMessage is not null)
+                            {
+                                <div class="alert @( _loginExitoso ? "alert-success" : "alert-danger") mt-4" role="alert">
+                                    @_statusMessage
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -47,3 +63,35 @@
         </div>
     </div>
 </div>
+
+@code {
+    private readonly LoginModel _model = new();
+    private bool _isSubmitting;
+    private bool _loginExitoso;
+    private string? _statusMessage;
+
+    private string _submitLabel => _isSubmitting ? "Validando..." : "Iniciar sesión";
+
+    private async Task OnSubmitAsync()
+    {
+        _isSubmitting = true;
+        _statusMessage = null;
+
+        try
+        {
+            _loginExitoso = await LoginService.ValidateCredentialsAsync(_model.IdUsuario!, _model.Clave!);
+            _statusMessage = _loginExitoso
+                ? "Inicio de sesión exitoso."
+                : "IdUsuario o clave incorrectos.";
+        }
+        catch (Exception ex)
+        {
+            _loginExitoso = false;
+            _statusMessage = $"Ocurrió un error al validar las credenciales: {ex.Message}";
+        }
+        finally
+        {
+            _isSubmitting = false;
+        }
+    }
+}
