@@ -1,7 +1,20 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Datos\\Proyectos\\GestorCuentas\\GestorCuentas\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C139E668-0E9B-470C-B5CF-4D33DC4DB2FC}|GestorCuentas.UI\\GestorCuentas.UI.csproj|c:\\datos\\proyectos\\gestorcuentas\\gestorcuentas\\gestorcuentas.ui\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C139E668-0E9B-470C-B5CF-4D33DC4DB2FC}|GestorCuentas.UI\\GestorCuentas.UI.csproj|solutionrelative:gestorcuentas.ui\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C139E668-0E9B-470C-B5CF-4D33DC4DB2FC}|GestorCuentas.UI\\GestorCuentas.UI.csproj|c:\\datos\\proyectos\\gestorcuentas\\gestorcuentas\\gestorcuentas.ui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C139E668-0E9B-470C-B5CF-4D33DC4DB2FC}|GestorCuentas.UI\\GestorCuentas.UI.csproj|solutionrelative:gestorcuentas.ui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C139E668-0E9B-470C-B5CF-4D33DC4DB2FC}|GestorCuentas.UI\\GestorCuentas.UI.csproj|c:\\datos\\proyectos\\gestorcuentas\\gestorcuentas\\gestorcuentas.ui\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C139E668-0E9B-470C-B5CF-4D33DC4DB2FC}|GestorCuentas.UI\\GestorCuentas.UI.csproj|solutionrelative:gestorcuentas.ui\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 1,
@@ -9,11 +22,50 @@
       "DocumentGroups": [
         {
           "DockedHeight": 281,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Home.razor",
+              "DocumentMoniker": "C:\\Datos\\Proyectos\\GestorCuentas\\GestorCuentas\\GestorCuentas.UI\\Components\\Pages\\Home.razor",
+              "RelativeDocumentMoniker": "GestorCuentas.UI\\Components\\Pages\\Home.razor",
+              "ToolTip": "C:\\Datos\\Proyectos\\GestorCuentas\\GestorCuentas\\GestorCuentas.UI\\Components\\Pages\\Home.razor",
+              "RelativeToolTip": "GestorCuentas.UI\\Components\\Pages\\Home.razor",
+              "ViewState": "AQIAABIAAAAAAAAAAAAAACcAAAB6AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-02T14:07:33.187Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainLayout.razor",
+              "DocumentMoniker": "C:\\Datos\\Proyectos\\GestorCuentas\\GestorCuentas\\GestorCuentas.UI\\Components\\Layout\\MainLayout.razor",
+              "RelativeDocumentMoniker": "GestorCuentas.UI\\Components\\Layout\\MainLayout.razor",
+              "ToolTip": "C:\\Datos\\Proyectos\\GestorCuentas\\GestorCuentas\\GestorCuentas.UI\\Components\\Layout\\MainLayout.razor",
+              "RelativeToolTip": "GestorCuentas.UI\\Components\\Layout\\MainLayout.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-02T06:22:20.054Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Datos\\Proyectos\\GestorCuentas\\GestorCuentas\\GestorCuentas.UI\\Program.cs",
+              "RelativeDocumentMoniker": "GestorCuentas.UI\\Program.cs",
+              "ToolTip": "C:\\Datos\\Proyectos\\GestorCuentas\\GestorCuentas\\GestorCuentas.UI\\Program.cs",
+              "RelativeToolTip": "GestorCuentas.UI\\Program.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAmwBsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-02T05:57:14.161Z",
+              "EditorCaption": ""
             }
           ]
         }

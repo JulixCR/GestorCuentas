@@ -1,7 +1,49 @@
 ﻿@page "/"
 
-<PageTitle>Home</PageTitle>
+<PageTitle>Iniciar sesión</PageTitle>
 
-<h1>Hello, world!</h1>
-
-Welcome to your new app.
+<div class="container-fluid login-page d-flex align-items-center justify-content-center min-vh-100">
+    <div class="row w-100 justify-content-center">
+        <div class="col-5 col-md-5 col-lg-6 col-xl-4">
+            <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+                <div class="row g-0">                    
+                    <div class="col-md-12 bg-white">
+                        <div class="p-4 p-lg-5">
+                            <div class="text-center mb-4">
+                                <div class="avatar-circle mx-auto mb-3">
+                                    <i class="bi bi-shield-lock"></i>
+                                </div>
+                                <h3 class="fw-semibold mb-1">Bienvenido de nuevo</h3>
+                                <p class="text-muted mb-0">Inicia sesión para continuar</p>
+                            </div>
+                            <form class="needs-validation" novalidate>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Correo electrónico</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                                        <input type="email" class="form-control" id="email" placeholder="nombre@ejemplo.com" required>
+                                        <div class="invalid-feedback">Ingresa un correo válido.</div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <label for="password" class="form-label mb-0">Contraseña</label>
+                                        <a href="#" class="small text-primary text-decoration-none">¿Olvidaste tu contraseña?</a>
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                                        <input type="password" class="form-control" id="password" placeholder="••••••••" required>
+                                        <div class="invalid-feedback">Ingresa tu contraseña.</div>
+                                    </div>
+                                </div>
+                                <div class="d-grid gap-3">
+                                    <button type="submit" class="btn btn-primary btn-lg shadow-sm">Iniciar sesión</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
