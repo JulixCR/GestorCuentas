@@ -8,6 +8,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 builder.Services.AddScoped<ILoginService, DapperLoginService>();
+builder.Services.AddScoped<SessionState>();
 
 var app = builder.Build();
 

@@ -1,6 +1,6 @@
 @inherits LayoutComponentBase
 @implements IDisposable
-@inject NavigationManager NavigationManager
+@inject SessionState SessionState
 
 @if (_showNavigation)
 {
@@ -42,24 +42,18 @@
 
     protected override void OnInitialized()
     {
-        UpdateNavigationVisibility();
-        NavigationManager.LocationChanged += OnLocationChanged;
+        _showNavigation = SessionState.IsAuthenticated;
+        SessionState.OnChange += OnSessionChanged;
     }
 
     public void Dispose()
     {
-        NavigationManager.LocationChanged -= OnLocationChanged;
+        SessionState.OnChange -= OnSessionChanged;
     }
 
-    private void OnLocationChanged(object? sender, LocationChangedEventArgs e)
+    private void OnSessionChanged()
     {
-        UpdateNavigationVisibility();
+        _showNavigation = SessionState.IsAuthenticated;
         InvokeAsync(StateHasChanged);
-    }
-
-    private void UpdateNavigationVisibility()
-    {
-        var relativePath = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
-        _showNavigation = !string.IsNullOrEmpty(relativePath);
     }
 }

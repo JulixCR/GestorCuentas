@@ -7,8 +7,8 @@ Este documento resume el comportamiento agregado recientemente en la interfaz de
 - **Componente:** `GestorCuentas.UI/Components/Layout/MainLayout.razor`
 - **Qué hace:**
   - Muestra una barra de navegación con enlaces a **Inicio** (`/dashboard`), **Ventas** (`/ventas`) y **Gastos** (`/gastos`).
-  - Controla la visibilidad de la barra evaluando la ruta actual: si la URL relativa está vacía (pantalla de login en `/`), la barra se oculta; en cualquier otra página se muestra.
-  - Se suscribe al evento `NavigationManager.LocationChanged` para recalcular la visibilidad cuando cambia la ruta y libera la suscripción en `Dispose` para evitar fugas de eventos.
+  - Controla la visibilidad de la barra a partir del estado de sesión (`SessionState.IsAuthenticated`): solo la muestra cuando el usuario tiene una sesión activa.
+  - Se suscribe al evento `SessionState.OnChange` para reaccionar a cambios de sesión y libera la suscripción en `Dispose` para evitar fugas de eventos.
 
 ## Pantalla de inicio de sesión
 
@@ -16,7 +16,7 @@ Este documento resume el comportamiento agregado recientemente en la interfaz de
 - **Qué hace:**
   - Define la ruta raíz (`/`) y muestra un formulario de login con campos **IdUsuario** y **Clave**.
   - Usa `LoginService.ValidateCredentialsAsync` para validar las credenciales. Mientras envía la solicitud muestra el texto "Validando...".
-  - Si la validación es exitosa, navega automáticamente a `/dashboard`; en caso contrario muestra un mensaje de error.
+  - Si la validación es exitosa, registra la sesión activa mediante `SessionState.SignIn()` y navega automáticamente a `/dashboard`; en caso contrario limpia el estado de sesión con `SessionState.SignOut()` y muestra un mensaje de error.
 
 ## Nuevas pantallas de navegación
 

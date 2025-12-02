@@ -3,6 +3,7 @@
 @using GestorCuentas.UI.Models
 @inject ILoginService LoginService
 @inject NavigationManager NavigationManager
+@inject SessionState SessionState
 
 <PageTitle>Iniciar sesión</PageTitle>
 
@@ -101,7 +102,11 @@
 
         if (_loginExitoso)
         {
+            SessionState.SignIn();
             NavigationManager.NavigateTo("/dashboard");
+            return;
         }
+
+        SessionState.SignOut();
     }
 }
