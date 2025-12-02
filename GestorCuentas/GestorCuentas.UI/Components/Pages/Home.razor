@@ -102,11 +102,11 @@
 
         if (_loginExitoso)
         {
-            SessionState.SignIn();
+            await SessionState.SignInAsync();
             NavigationManager.NavigateTo("/dashboard");
             return;
         }
 
-        SessionState.SignOut();
+        await SessionState.SignOutAsync();
     }
 }

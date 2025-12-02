@@ -16,7 +16,7 @@ Este documento resume el comportamiento agregado recientemente en la interfaz de
 - **Qué hace:**
   - Define la ruta raíz (`/`) y muestra un formulario de login con campos **IdUsuario** y **Clave**.
   - Usa `LoginService.ValidateCredentialsAsync` para validar las credenciales. Mientras envía la solicitud muestra el texto "Validando...".
-  - Si la validación es exitosa, registra la sesión activa mediante `SessionState.SignIn()` y navega automáticamente a `/dashboard`; en caso contrario limpia el estado de sesión con `SessionState.SignOut()` y muestra un mensaje de error.
+  - Si la validación es exitosa, registra la sesión activa mediante `SessionState.SignInAsync()` (que también persiste la información en el `ProtectedSessionStorage`) y navega automáticamente a `/dashboard`; en caso contrario limpia el estado de sesión con `SessionState.SignOutAsync()` y muestra un mensaje de error.
 
 ## Nuevas pantallas de navegación
 

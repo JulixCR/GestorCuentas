@@ -1,5 +1,6 @@
 using GestorCuentas.UI.Components;
 using GestorCuentas.UI.Services;
+using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 builder.Services.AddScoped<ILoginService, DapperLoginService>();
+builder.Services.AddScoped<ProtectedSessionStorage>();
 builder.Services.AddScoped<SessionState>();
 
 var app = builder.Build();

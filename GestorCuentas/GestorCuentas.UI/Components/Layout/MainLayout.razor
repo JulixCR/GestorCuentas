@@ -40,8 +40,9 @@
 @code {
     private bool _showNavigation;
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+        await SessionState.EnsureInitializedAsync();
         _showNavigation = SessionState.IsAuthenticated;
         SessionState.OnChange += OnSessionChanged;
     }
