@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Name>GestorCuentas.Database</Name>
+    <DatabaseName>GestorCuentas</DatabaseName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql150DatabaseSchemaProvider</DSP>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <SqlServerVersion>Sql150</SqlServerVersion>
+    <IncludeCompositeObjects>False</IncludeCompositeObjects>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Tables" />
+    <Folder Include="Stored Procedures" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\TB_Usuarios.sql" />
+    <Build Include="Stored Procedures\PA_ValidarCredenciales.sql" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+</Project>

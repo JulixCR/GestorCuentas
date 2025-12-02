@@ -5,6 +5,8 @@ VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestorCuentas.UI", "GestorCuentas.UI\GestorCuentas.UI.csproj", "{C139E668-0E9B-470C-B5CF-4D33DC4DB2FC}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "GestorCuentas.Database", "GestorCuentas.Database\GestorCuentas.Database.sqlproj", "{30E3F0E7-01B3-4A33-BB1B-6A299C3E51A4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,10 +14,14 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{C139E668-0E9B-470C-B5CF-4D33DC4DB2FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C139E668-0E9B-470C-B5CF-4D33DC4DB2FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C139E668-0E9B-470C-B5CF-4D33DC4DB2FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C139E668-0E9B-470C-B5CF-4D33DC4DB2FC}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
+                {C139E668-0E9B-470C-B5CF-4D33DC4DB2FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+                {C139E668-0E9B-470C-B5CF-4D33DC4DB2FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+                {C139E668-0E9B-470C-B5CF-4D33DC4DB2FC}.Release|Any CPU.Build.0 = Release|Any CPU
+                {30E3F0E7-01B3-4A33-BB1B-6A299C3E51A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+                {30E3F0E7-01B3-4A33-BB1B-6A299C3E51A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+                {30E3F0E7-01B3-4A33-BB1B-6A299C3E51A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+                {30E3F0E7-01B3-4A33-BB1B-6A299C3E51A4}.Release|Any CPU.Build.0 = Release|Any CPU
+        EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
