@@ -18,7 +18,6 @@ builder.Services.AddAuthentication("Cookies")
 
 builder.Services.AddAuthorization();
 builder.Services.AddCascadingAuthenticationState();
-builder.Services.AddScoped<AuthenticationStateProvider, ServerAuthenticationStateProvider>();
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddScoped<ILoginService, DapperLoginService>();
