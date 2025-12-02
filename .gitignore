@@ -3,3 +3,4 @@
 ################################################################################
 
 *.dbmdl
+/GestorCuentas/GestorCuentas.Database/GestorCuentas.Database.jfm
