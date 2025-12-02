@@ -1,0 +1,92 @@
+@page "/login"
+@inject IAuthService AuthService
+@inject NavigationManager Navigation
+@inject NotificationService NotificationService
+
+<PageTitle>Iniciar sesión</PageTitle>
+
+<div class="login-container">
+    <div class="login-illustration">
+        <div class="brand">
+            <span class="brand-pill">Gestor</span>
+            <h1>Gestor de Cuentas</h1>
+            <p>Administra tus cuentas con seguridad y velocidad.</p>
+        </div>
+    </div>
+    <RadzenCard Class="login-card" Style="width: 100%;">
+        <div class="card-title">
+            <h2>Iniciar sesión</h2>
+            <p>Usa tus credenciales corporativas para acceder.</p>
+        </div>
+
+        <EditForm Model="_credentials" OnValidSubmit="HandleLoginAsync" class="login-form">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            <div class="form-grid">
+                <div class="field">
+                    <RadzenLabel Text="Usuario" Component="UserName" />
+                    <RadzenTextBox Name="UserName" @bind-Value="_credentials.UserName" Placeholder="Ej. jgomez" Style="width:100%" />
+                    <ValidationMessage For="@(() => _credentials.UserName)" />
+                </div>
+                <div class="field">
+                    <RadzenLabel Text="Contraseña" Component="Password" />
+                    <RadzenPassword Name="Password" @bind-Value="_credentials.Password" Placeholder="••••••••" Style="width:100%" />
+                    <ValidationMessage For="@(() => _credentials.Password)" />
+                </div>
+            </div>
+
+            @if (!string.IsNullOrWhiteSpace(_errorMessage))
+            {
+                <RadzenAlert Severity="AlertSeverity.Warning" CloseButton="true" Class="mt-2" Style="width:100%">
+                    @_errorMessage
+                </RadzenAlert>
+            }
+
+            <div class="actions">
+                <RadzenButton ButtonStyle="ButtonStyle.Primary" Icon="login" Type="ButtonType.Submit" Disabled="_isLoading" Style="width:100%">
+                    @(_isLoading ? "Validando..." : "Entrar")
+                </RadzenButton>
+            </div>
+        </EditForm>
+    </RadzenCard>
+</div>
+
+@code {
+    private readonly LoginRequest _credentials = new();
+    private bool _isLoading;
+    private string? _errorMessage;
+
+    private async Task HandleLoginAsync()
+    {
+        _errorMessage = null;
+        _isLoading = true;
+
+        var result = await AuthService.ValidateCredentialsAsync(_credentials.UserName, _credentials.Password);
+
+        _isLoading = false;
+        if (result.Success)
+        {
+            NotificationService.Notify(new NotificationMessage
+            {
+                Severity = NotificationSeverity.Success,
+                Summary = "Bienvenido",
+                Detail = $"Hola, {result.DisplayName}!",
+                Duration = 3000
+            });
+
+            Navigation.NavigateTo("/", forceLoad: true);
+            return;
+        }
+
+        _errorMessage = result.ErrorMessage;
+    }
+
+    private class LoginRequest
+    {
+        [Required(ErrorMessage = "El usuario es obligatorio")]
+        public string UserName { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "La contraseña es obligatoria")]
+        public string Password { get; set; } = string.Empty;
+    }
+}
