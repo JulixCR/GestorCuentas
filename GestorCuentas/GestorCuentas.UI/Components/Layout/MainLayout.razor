@@ -1,31 +1,30 @@
 @inherits LayoutComponentBase
-@implements IDisposable
-@inject SessionState SessionState
 
-@if (_showNavigation)
-{
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/dashboard">Gestor de Cuentas</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <NavLink class="nav-link" href="/dashboard" Match="NavLinkMatch.All">Inicio</NavLink>
-                    </li>
-                    <li class="nav-item">
-                        <NavLink class="nav-link" href="/ventas">Ventas</NavLink>
-                    </li>
-                    <li class="nav-item">
-                        <NavLink class="nav-link" href="/gastos">Gastos</NavLink>
-                    </li>
-                </ul>
+<AuthorizeView>
+    <Authorized>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/dashboard">Gestor de Cuentas</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <NavLink class="nav-link" href="/dashboard" Match="NavLinkMatch.All">Inicio</NavLink>
+                        </li>
+                        <li class="nav-item">
+                            <NavLink class="nav-link" href="/ventas">Ventas</NavLink>
+                        </li>
+                        <li class="nav-item">
+                            <NavLink class="nav-link" href="/gastos">Gastos</NavLink>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
-}
+        </nav>
+    </Authorized>
+</AuthorizeView>
 
 <div class="main-content">
     @Body
@@ -36,25 +35,3 @@
     <a href="" class="reload">Reload</a>
     <a class="dismiss">🗙</a>
 </div>
-
-@code {
-    private bool _showNavigation;
-
-    protected override async Task OnInitializedAsync()
-    {
-        await SessionState.EnsureInitializedAsync();
-        _showNavigation = SessionState.IsAuthenticated;
-        SessionState.OnChange += OnSessionChanged;
-    }
-
-    public void Dispose()
-    {
-        SessionState.OnChange -= OnSessionChanged;
-    }
-
-    private void OnSessionChanged()
-    {
-        _showNavigation = SessionState.IsAuthenticated;
-        InvokeAsync(StateHasChanged);
-    }
-}

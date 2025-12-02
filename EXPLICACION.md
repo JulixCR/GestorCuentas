@@ -1,32 +1,37 @@
 # Explicación de la estructura actual
 
-Este documento resume el comportamiento agregado recientemente en la interfaz de Blazor.
+Este documento resume el comportamiento de autenticación y navegación implementado en la interfaz de Blazor.
 
-## Layout principal y barra de navegación
+## Autenticación con cookies
 
-- **Componente:** `GestorCuentas.UI/Components/Layout/MainLayout.razor`
-- **Qué hace:**
-  - Muestra una barra de navegación con enlaces a **Inicio** (`/dashboard`), **Ventas** (`/ventas`) y **Gastos** (`/gastos`).
-  - Controla la visibilidad de la barra a partir del estado de sesión (`SessionState.IsAuthenticated`): solo la muestra cuando el usuario tiene una sesión activa.
-  - Se suscribe al evento `SessionState.OnChange` para reaccionar a cambios de sesión y libera la suscripción en `Dispose` para evitar fugas de eventos.
+- **Configuración:** `GestorCuentas.UI/Program.cs`
+  - Registra autenticación con cookies (esquema predeterminado) y define la raíz (`/`) como ruta de inicio de sesión y acceso denegado.
+  - Agrega autorización, el proveedor de estado de autenticación del servidor y `HttpContextAccessor` para poder emitir cookies desde los componentes interactivos.
+  - Inserta `UseAuthentication()` y `UseAuthorization()` en el pipeline de la app antes del mapeo de componentes.
 
-## Pantalla de inicio de sesión
+## Flujo de inicio de sesión
 
 - **Componente:** `GestorCuentas.UI/Components/Pages/Home.razor`
-- **Qué hace:**
-  - Define la ruta raíz (`/`) y muestra un formulario de login con campos **IdUsuario** y **Clave**.
-  - Usa `LoginService.ValidateCredentialsAsync` para validar las credenciales. Mientras envía la solicitud muestra el texto "Validando...".
-  - Si la validación es exitosa, registra la sesión activa mediante `SessionState.SignInAsync()` (que también persiste la información en el `ProtectedSessionStorage`) y navega automáticamente a `/dashboard`; en caso contrario limpia el estado de sesión con `SessionState.SignOutAsync()` y muestra un mensaje de error.
+  - Ruta raíz (`/`) marcada con `[AllowAnonymous]`.
+  - Valida las credenciales con `LoginService.ValidateCredentialsAsync`.
+  - Si las credenciales son válidas, crea un `ClaimsPrincipal`, firma con `SignInAsync` usando cookies persistentes y redirige al Dashboard.
+  - Si son inválidas, muestra un mensaje de error y asegura el cierre de sesión con `SignOutAsync`.
 
-## Nuevas pantallas de navegación
+## Protección de páginas
 
-- **Dashboard:** `GestorCuentas.UI/Components/Pages/Dashboard.razor` muestra un título y un texto temporal.
-- **Ventas:** `GestorCuentas.UI/Components/Pages/Ventas.razor` indica que la sección está en construcción.
-- **Gastos:** `GestorCuentas.UI/Components/Pages/Gastos.razor` también está marcada como sección en construcción.
+- **Páginas protegidas:**
+  - `Dashboard.razor`, `Ventas.razor` y `Gastos.razor` están anotadas con `[Authorize]`, por lo que solo son accesibles para usuarios autenticados.
+  - `Components/Routes.razor` utiliza `AuthorizeRouteView` para mostrar un mensaje de "No autorizado" y enlace al login cuando un visitante no está autenticado.
+
+## Barra de navegación condicionada
+
+- **Componente:** `GestorCuentas.UI/Components/Layout/MainLayout.razor`
+  - Muestra la barra de navegación solo dentro de `<AuthorizeView>` para que únicamente aparezca cuando el usuario tiene una identidad autenticada.
+  - Incluye enlaces a **Inicio**, **Ventas** y **Gastos**.
 
 ## Estilos aplicados
 
 - **Archivo:** `GestorCuentas.UI/Components/Layout/MainLayout.razor.css`
-- **Qué contiene:** agrega relleno al contenedor principal y estilos para el banner de error de Blazor.
+  - Agrega relleno al contenedor principal y estilos para el banner de error de Blazor.
 
-En conjunto, estos cambios presentan una experiencia donde el usuario inicia sesión en `/`, tras autenticarse pasa al Dashboard y, a partir de ese punto, ve la barra de navegación para moverse entre las secciones disponibles.
+En conjunto, el usuario inicia sesión en `/` mediante cookies, accede a Dashboard y al resto de secciones protegidas, y solo ve la barra de navegación mientras su cookie de autenticación esté vigente.

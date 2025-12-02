@@ -1,9 +1,13 @@
 @page "/"
 @rendermode InteractiveServer
+@attribute [AllowAnonymous]
+@using Microsoft.AspNetCore.Authentication
+@using Microsoft.AspNetCore.Authentication.Cookies
+@using System.Security.Claims
 @using GestorCuentas.UI.Models
 @inject ILoginService LoginService
 @inject NavigationManager NavigationManager
-@inject SessionState SessionState
+@inject IHttpContextAccessor HttpContextAccessor
 
 <PageTitle>Iniciar sesión</PageTitle>
 
@@ -100,13 +104,36 @@
             _isSubmitting = false;
         }
 
-        if (_loginExitoso)
+        var httpContext = HttpContextAccessor.HttpContext;
+
+        if (httpContext is null)
         {
-            await SessionState.SignInAsync();
-            NavigationManager.NavigateTo("/dashboard");
+            _statusMessage = "No se pudo acceder al contexto de autenticación.";
             return;
         }
 
-        await SessionState.SignOutAsync();
+        if (_loginExitoso)
+        {
+            var claims = new List<Claim>
+            {
+                new(ClaimTypes.Name, _model.IdUsuario!)
+            };
+
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var authProperties = new AuthenticationProperties
+            {
+                IsPersistent = true
+            };
+
+            await httpContext.SignInAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                new ClaimsPrincipal(claimsIdentity),
+                authProperties);
+
+            NavigationManager.NavigateTo("/dashboard", forceLoad: true);
+            return;
+        }
+
+        await httpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
     }
 }
