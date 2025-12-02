@@ -9,6 +9,8 @@ CREATE TABLE [dbo].[TB_Usuarios]
     CONSTRAINT [PK_TB_Usuarios] PRIMARY KEY CLUSTERED ([IdUsuario] ASC)
 );
 
+GO;
+
 CREATE UNIQUE INDEX [UX_TB_Usuarios_Correo]
     ON [dbo].[TB_Usuarios]([Correo])
     WHERE [Correo] IS NOT NULL;

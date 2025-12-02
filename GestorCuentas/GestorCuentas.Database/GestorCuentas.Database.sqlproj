@@ -10,6 +10,7 @@
     <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
     <SqlServerVersion>Sql150</SqlServerVersion>
     <IncludeCompositeObjects>False</IncludeCompositeObjects>
+    <ProjectGuid>{30e3f0e7-01b3-4a33-bb1b-6a299c3e51a4}</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Tables" />

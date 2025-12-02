@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{C139E668-0E9B-470C-B5CF-4D33DC4DB2FC}|GestorCuentas.UI\\GestorCuentas.UI.csproj|solutionrelative:gestorcuentas.ui\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Datos\\Proyectos\\GestorCuentas\\GestorCuentas\\GestorCuentas.UI\\Services\\DapperLoginService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GestorCuentas.UI\\Services\\DapperLoginService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C139E668-0E9B-470C-B5CF-4D33DC4DB2FC}|GestorCuentas.UI\\GestorCuentas.UI.csproj|c:\\datos\\proyectos\\gestorcuentas\\gestorcuentas\\gestorcuentas.ui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C139E668-0E9B-470C-B5CF-4D33DC4DB2FC}|GestorCuentas.UI\\GestorCuentas.UI.csproj|solutionrelative:gestorcuentas.ui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -25,8 +29,16 @@
           "SelectedChildIndex": 1,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DapperLoginService.cs",
+              "DocumentMoniker": "C:\\Datos\\Proyectos\\GestorCuentas\\GestorCuentas\\GestorCuentas.UI\\Services\\DapperLoginService.cs",
+              "RelativeDocumentMoniker": "GestorCuentas.UI\\Services\\DapperLoginService.cs",
+              "ToolTip": "C:\\Datos\\Proyectos\\GestorCuentas\\GestorCuentas\\GestorCuentas.UI\\Services\\DapperLoginService.cs",
+              "RelativeToolTip": "GestorCuentas.UI\\Services\\DapperLoginService.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-02T16:13:17.944Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -36,14 +48,14 @@
               "RelativeDocumentMoniker": "GestorCuentas.UI\\Components\\Pages\\Home.razor",
               "ToolTip": "C:\\Datos\\Proyectos\\GestorCuentas\\GestorCuentas\\GestorCuentas.UI\\Components\\Pages\\Home.razor",
               "RelativeToolTip": "GestorCuentas.UI\\Components\\Pages\\Home.razor",
-              "ViewState": "AQIAABIAAAAAAAAAAAAAACcAAAB6AAAA",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAcwBYAAAA8AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-12-02T14:07:33.187Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "MainLayout.razor",
               "DocumentMoniker": "C:\\Datos\\Proyectos\\GestorCuentas\\GestorCuentas\\GestorCuentas.UI\\Components\\Layout\\MainLayout.razor",
               "RelativeDocumentMoniker": "GestorCuentas.UI\\Components\\Layout\\MainLayout.razor",
@@ -56,13 +68,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Datos\\Proyectos\\GestorCuentas\\GestorCuentas\\GestorCuentas.UI\\Program.cs",
               "RelativeDocumentMoniker": "GestorCuentas.UI\\Program.cs",
               "ToolTip": "C:\\Datos\\Proyectos\\GestorCuentas\\GestorCuentas\\GestorCuentas.UI\\Program.cs",
               "RelativeToolTip": "GestorCuentas.UI\\Program.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAmwBsAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-02T05:57:14.161Z",
               "EditorCaption": ""
