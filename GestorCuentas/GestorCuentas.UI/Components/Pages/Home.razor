@@ -3,6 +3,7 @@
 @rendermode InteractiveServer
 @attribute [AllowAnonymous]
 @using GestorCuentas.UI.Models
+@inject ILoginService LoginService
 @inject NavigationManager NavigationManager
 @inject HttpClient HttpClient
 
@@ -80,52 +81,34 @@
     {
         _isSubmitting = true;
         _statusMessage = null;
-        _loginExitoso = true;
+        _loginExitoso = false;
 
         try
         {
-            //_loginExitoso = await LoginService.ValidateCredentialsAsync(_model.IdUsuario!, _model.Clave!);
+            _loginExitoso = await LoginService.ValidateCredentialsAsync(_model.IdUsuario!, _model.Clave!);
             _statusMessage = _loginExitoso
                 ? "Inicio de sesión exitoso."
                 : "IdUsuario o clave incorrectos.";
-            
-            var httpContext = HttpContextAccessor.HttpContext;
+            var loginUri = NavigationManager.ToAbsoluteUri("/api/login");
+            var response = await HttpClient.PostAsJsonAsync(loginUri, _model);
 
-            if (httpContext is null)
+            if (response.IsSuccessStatusCode)
             {
-                _statusMessage = "No se pudo acceder al contexto de autenticación.";
-                return;
-            }
-
-            if (_loginExitoso)
-            {
-                var claims = new List<Claim>
-                {
-                    new(ClaimTypes.Name, _model.IdUsuario!)
-                };
-
-                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                var authProperties = new AuthenticationProperties
-                {
-                    IsPersistent = true,
-                    ExpiresUtc = DateTimeOffset.UtcNow.AddHours(8)
-                };
-
-                await httpContext.SignInAsync(
-                    CookieAuthenticationDefaults.AuthenticationScheme,
-                    new ClaimsPrincipal(claimsIdentity),
-                    authProperties);
-
+                _loginExitoso = true;
+                _statusMessage = "Inicio de sesión exitoso.";
                 NavigationManager.NavigateTo("/dashboard", forceLoad: true);
                 return;
             }
 
-            await httpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            _statusMessage = response.StatusCode == System.Net.HttpStatusCode.Unauthorized
+                ? "IdUsuario o clave incorrectos."
+                : $"No se pudo iniciar sesión. Código: {(int)response.StatusCode}";
         }
         catch (Exception ex)
         {
             _loginExitoso = false;
             _statusMessage = $"Ocurrió un error al validar las credenciales: {ex.Message}";
+            _statusMessage = $"Ocurrió un error al iniciar sesión: {ex.Message}";
         }
         finally
         {
