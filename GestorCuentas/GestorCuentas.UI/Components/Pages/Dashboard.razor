@@ -1,6 +1,6 @@
 @page "/dashboard"
 @rendermode InteractiveServer
-@attribute [Authorize]
+
 
 <PageTitle>Dashboard</PageTitle>
 
@@ -8,7 +8,7 @@
     <h1 class="display-6">Dashboard</h1>
     <AuthorizeView>
         <Authorized Context="authState">
-            <p class="text-muted">Hola, @authState.User.Identity?.Name. Aquí verás un resumen de tu actividad.</p>
+            <p class="text-muted">Hola, Aquí verás un resumen de tu actividad.</p>
         </Authorized>
     </AuthorizeView>
     <p class="text-muted">Próximamente verás aquí un resumen de tu actividad.</p>

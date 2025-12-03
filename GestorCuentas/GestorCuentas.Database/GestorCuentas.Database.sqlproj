@@ -12,6 +12,9 @@
     <IncludeCompositeObjects>False</IncludeCompositeObjects>
     <ProjectGuid>{30e3f0e7-01b3-4a33-bb1b-6a299c3e51a4}</ProjectGuid>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Folder Include="Tables" />
     <Folder Include="Stored Procedures" />
