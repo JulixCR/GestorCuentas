@@ -1,6 +1,4 @@
-@using Microsoft.AspNetCore.Authentication
-@using Microsoft.AspNetCore.Authentication.Cookies
-@inject IHttpContextAccessor HttpContextAccessor
+@inject HttpClient HttpClient
 @inject NavigationManager NavigationManager
 
 <button class="btn btn-outline-light" @onclick="SignOutAsync">
@@ -11,13 +9,8 @@
 @code {
     private async Task SignOutAsync()
     {
-        var httpContext = HttpContextAccessor.HttpContext;
-        if (httpContext is null)
-        {
-            return;
-        }
-
-        await httpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        var logoutUri = NavigationManager.ToAbsoluteUri("/api/logout");
+        await HttpClient.PostAsync(logoutUri, null);
         NavigationManager.NavigateTo("/login", forceLoad: true);
     }
 }
