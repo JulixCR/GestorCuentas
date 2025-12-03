@@ -3,8 +3,8 @@
 @rendermode InteractiveServer
 @attribute [AllowAnonymous]
 @using GestorCuentas.UI.Models
-@inject NavigationManager NavigationManager
-@inject HttpClient HttpClient
+@inject ILoginService LoginService
+@rendermode InteractiveServer
 
 <PageTitle>Iniciar sesión</PageTitle>
 
@@ -23,7 +23,7 @@
                                 <p class="text-muted mb-0">Inicia sesión para continuar</p>
                             </div>
 
-                            <EditForm Model="_model" OnValidSubmit="OnSubmitAsync" FormName="login-form" class="needs-validation" novalidate>
+                            <EditForm Model="_model" FormName="FormLogin" OnValidSubmit="OnSubmitAsync" class="needs-validation" novalidate>
                                 <DataAnnotationsValidator />
                                 <ValidationSummary />
 
